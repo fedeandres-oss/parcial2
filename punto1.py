@@ -37,7 +37,7 @@ magnitud = np.abs(fft_valores[pos_mask]) / N
 
 # Detección del pico principal (Portadora)
 idx_max = np.argmax(magnitud)
-fc_transmitida_kHz = frecuencias_pos[idx_max]       #cambiar por 5Khz para mejor exactitud
+fc_transmitida_kHz = frecuencias_pos[idx_max]
 fc_transmitida_Hz = fc_transmitida_kHz * 1000  # Ej: 20,000 Hz
 pico_max = magnitud[idx_max]
 
@@ -96,7 +96,7 @@ plt.show()
 magnitud_hilbert = np.abs(hilbert(y_recibida))
 
 # Frecuencia de corte = Frecuencia transmitida (fc = 20 kHz) según punto (e)
-fc_corte = 5000     #20,000 (frecuencia de la portadora) o 5kHz frecuencia de la moduladora
+fc_corte = fc_transmitida_Hz     #20,000 (frecuencia de la portadora) o 5kHz frecuencia de la moduladora
 
 # (c) y (e) FIR Orden 50 (51 numtaps)
 b_fir_50 = firwin(51, fc_corte / nyquist, pass_zero=True)
